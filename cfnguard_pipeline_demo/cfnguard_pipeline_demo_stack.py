@@ -20,14 +20,13 @@ class CfnguardPipelineDemoStack(core.Stack):
             resources=["*"],
             actions=["iam:CreateServiceLinkedRole"],
             conditions={
-                "StringEquals":[
-                    {"iam:AWSServiceName":[
+                "StringEquals":{
+                    "iam:AWSServiceName":[
                         "autoscaling.amazonaws.com",
                         "ec2scheduled.amazonaws.com",
                         "elasticloadbalancing.amazonaws.com"
-                        ]
-                    }
-                ]
+                    ]
+                }
             }
         ))
 
@@ -55,9 +54,9 @@ class CfnguardPipelineDemoStack(core.Stack):
             resources=["*"],
             actions=["iam:PassRole"],
             conditions={
-                "StringEqualsIfExists":[
-                    {"iam:PassedToService":["cloudformation.amazonaws.com","ec2.amazonaws.com"]}
-                ]
+                "StringEqualsIfExists":{
+                    "iam:PassedToService":["cloudformation.amazonaws.com","ec2.amazonaws.com"]
+                }
             }
         ))
 
